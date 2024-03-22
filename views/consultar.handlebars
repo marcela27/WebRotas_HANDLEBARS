@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="card mb-3 col-12">
+        <div class="card-body">
+            <h5 class="card-title">Consultar - Agendamento de Potenciais Clientes</h5>
+            <p class="card-text">Lista dos agendamentos cadastrados:</p>
+            <table class="table">
+                <thead style="background-color: #0d6efd">
+                    <tr class="text-light fs-6"> 
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Origem</th>
+                        <th>Data do Contato</th>
+                        <th>Observação</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each agendamentos}}
+                        <tr class="fs-6">
+                            <td>{{this.nome}}</td>
+                            <td>{{this.telefone}}</td>
+                            <td>{{this.origem}}</td>
+                            <td>{{this.data_contato}}</td>
+                            <td>{{this.observacao}}</td>
+                            <td class="d-flex">
+                                <form action="/atualizar" method="GET">
+                                    {{#if this.id}}
+                                    <input type="hidden" name="id" value="{{this.id}}">
+                                    {{/if}}
+                                    <button type="submit" class="btn btn-primary" style="margin-right: 5px;">Atualizar</button>
+                                </form>
+                                <form action="/excluir" method="POST">
+                                    <input type="hidden" name="id" value="{{this.id}}">
+                                    <button type="submit" class="btn btn-danger">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
